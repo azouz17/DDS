@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    screens: {  
+                        md: '600px',  
+                        lg: '1024px', 
+                    },
+                },
+            },
+        };
+    </script>
+    <title>DDS</title>
+</head>
+<body>
+
+<div class="flex h-full justify-center items-center">
+    <!-- main container only visible on screens > 1025px -->
+    <main class="lg:h-full lg:bg-gray-100 lg:w-[834px] lg:flex lg:justify-center lg:items-center;">
+        <div class="bg-white flex flex-col lg:w-[700px] md:p-4 p-2 h-3/4 justify-center items-center">
+            <img src="https://9knots.co.uk/wp-content/uploads/2021/11/DDSLogo.png" width="300" height="30">
+            <div class="self-start;">
+                <header >
+                    <h1 class="mt-4 text-xl">Welcome to the DDS request portal</h1>
+                    <p class="mt-4 text-sm">Please fill the form below and our team will review your request and allocate it according
+                        to your business priority
+                    </p>
+            </header>
+            <!-- form section where all input fields are required -->
+                <form action="">
+                    <fieldset>
+                        <!-- section flex layout changes on screen size (column when screen < 600px) (row when screen > 600px) -->
+                        <section class="flex flex-col md:flex-row mt-3 md:justify-between text-sm align-baseline">
+                            <div class="flex flex-col w-full md:w-1/2">
+                                <label for="name">Your name</label>
+                                <input required class="w-full border-2 rounded mt-1  p-1" id="name" type="text" placeholder="Enter name">
+                            </div>
+                            <!-- specify email type in input field for input validation -->
+                            <div class="flex flex-col w-full md:w-1/2 md:ml-4 mt-2 md:mt-0">
+                                <label for="email">Your email</label>
+                                <input required class="w-full border-2 rounded mt-1  p-1" id="email" type="email" placeholder="Enter email">
+                            </div>
+                        </section>
+                        <section class="flex flex-col text-sm mt-2">
+                            <label for="request summary">Request Summary / Title</label>
+                            <input required class="w-full border-2 rounded mt-1  p-1" id="request summary" type="text" placeholder="Enter title">
+                        </section>
+                        <section class="flex flex-col text-sm mt-4">
+                            <label for="request desc">Request description</label>
+                            <textarea required class="w-full border-2 rounded mt-1  p-1" id="request desc" rows="10" placeholder="Enter title"> </textarea>
+                        </section>
+                        <section class="flex flex-col md:flex-row mt-3 md:justify-between text-sm align-baseline">
+                            <div class="flex flex-col w-full md:w-1/2 text-sm">
+                                <label for="priority">Priority</label>
+                                <select required  class="w-full border border-2 rounded p-1 mt-1 font-normal" id="priority">
+                                    <option disabled value = "0">Select priority</option>
+                                    <option value = "1">Urgent</option>
+                                    <option value = "2">most important</option>
+                                    <option value = "2">more important</option>
+                                    <option value = "3">less important</option>
+                                </select>
+                            </div>
+                            <!-- hiding default input file upload style and creating custom styles -->
+                            <div class="flex flex-col w-full md:w-1/2 text-sm md:ml-2">
+                                <label for="file" class="block">Supporting file</label>
+                                <input type="file" id="file" class="hidden" required onchange="displayFileName()" />
+                                <label for="file" class="block w-full bg-orange-500 text-white text-center rounded px-4 py-2 mt-1 hover:opacity-70">
+                                    Choose file
+                                </label>
+                                <span id="file-name" class="block mt-2 text-sm text-gray-600">No file chosen</span>
+                            </div>
+                        </section>
+                        <footer class="text-xs mt-2">
+                            <p> By Checking this box, I confirm that</p>
+                            <ul class="mt-2 list-disc ml-6">
+                                <li>I understand the proper usage of this portal for submitting requests to the IT company.</li>
+                                <li>I acknowledge that the IT company operates within a defined scope of work, and my request must align with this scope.</li>
+                                <li>I am aware of my own business's internal priorities and agree to submit requests accordingly.</li>
+                            </ul>
+                            <!-- required checkbox for acknlowdgements -->
+                            <div class="mt-4 flex text-left ml-2">
+                                <input required type="checkbox" id="acknowledge" name="vehicle1" value="Bike">
+                                <label for="acknowledge" class="ml-1"> I acknowledge and agree to the above terms</label>
+                            </div>
+                        </footer>
+                        </div>
+                        <!-- submit button that submits form -->
+                        <button type="submit" class="md:w-1/2 w-3/4 mt-4 rounded border border-black bg-teal-500 text-white p-2 mb-10 hover:opacity-70">
+                            Submit
+                        </button>
+                    </fieldset>
+                </form>
+        </div>
+    </main> 
+</div>
+<script>
+    // JavaScript function to display the selected file name
+    function displayFileName() {
+        const fileInput = document.getElementById("file");
+        const fileNameSpan = document.getElementById("file-name");
+        const file = fileInput.files[0];
+        fileNameSpan.textContent = file ? file.name : "No file chosen";
+    }
+</script>
+</body>
+</html>
